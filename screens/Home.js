@@ -1,12 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Task from "./Task";
 
-const Tasks = () => {
+const Home = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tasks</Text>
-      <Task />
+      <Text style={styles.title}>Home</Text>
     </View>
   );
 };
@@ -16,4 +14,4 @@ const styles = StyleSheet.create({
   title: { textAlign: "center", fontSize: 24 },
 });
 
-export default Tasks;
+export default Home;

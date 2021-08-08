@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { login } from "../../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const schemaValidation = yup.object({
   email: yup.string().email().required(),
@@ -18,6 +21,11 @@ const schemaValidation = yup.object({
 });
 
 const Login = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.userLoggedIn);
+  useEffect(() => {
+    console.log(auth);
+  }, [dispatch, auth]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -28,7 +36,19 @@ const Login = ({ navigation }) => {
         <ScrollView>
           <Formik
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => console.log(values)}
+            onSubmit={async (values) => {
+              dispatch(
+                login({ email: values.email, password: values.password })
+              );
+              if (auth.success) {
+                await AsyncStorage.setItem("token", auth.user.token);
+                const token = await AsyncStorage.getItem("token");
+                console.log("Token from storage:", token);
+                navigation.navigate("Home");
+              } else if (auth.error) {
+                console.log(auth.error);
+              }
+            }}
             validationSchema={schemaValidation}
           >
             {(props) => (

@@ -21,7 +21,7 @@ export const login = (credentials) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
     const { data } = await axios.post(
-      "https://project-management-2.herokuapp.com/api/users/login",
+      "https://project-management-2.herokuapp.com/api/user/login",
       credentials
     );
     if (data.success) {
@@ -41,7 +41,7 @@ export const register = (credentials) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_REQUEST });
     const { data } = await axios.post(
-      "https://project-management-2.herokuapp.com/api/users/register",
+      "https://project-management-2.herokuapp.com/api/user/register",
       credentials
     );
     if (data.success) {
@@ -61,7 +61,7 @@ export const getProfile = () => async (dispatch) => {
   try {
     dispatch({ type: GET_PROFILE_REQUEST });
     const { data } = await axios.get(
-      "https://project-management-2.herokuapp.com/api/users/profile"
+      "https://project-management-2.herokuapp.com/api/user/profile"
     );
     if (data.success) {
       dispatch({ type: GET_PROFILE_SUCCESS, payload: data });
@@ -80,7 +80,7 @@ export const updateProfile = (profile) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROFILE_REQUEST });
     const { data } = await axios.put(
-      "https://project-management-2.herokuapp.com/api/users/profile",
+      "https://project-management-2.herokuapp.com/api/user/profile",
       profile
     );
     if (data.sucess) {

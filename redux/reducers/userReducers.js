@@ -1,4 +1,7 @@
 import {
+  DELETE_ACCOUNT_FAIL,
+  DELETE_ACCOUNT_REQUEST,
+  DELETE_ACCOUNT_SUCCESS,
   GET_PROFILE_FAIL,
   GET_PROFILE_REQUEST,
   GET_PROFILE_SUCCESS,
@@ -59,6 +62,19 @@ export const updateProfileReducer = (state = {}, action) => {
     case UPDATE_PROFILE_SUCCESS:
       return { loading: false, success: true, profile: action.payload };
     case UPDATE_PROFILE_FAIL:
+      return { loading: false, success: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const deleteAccountReducer = (state = {}, action) => {
+  switch (action.type) {
+    case DELETE_ACCOUNT_REQUEST:
+      return { loading: true };
+    case DELETE_ACCOUNT_SUCCESS:
+      return { loading: false, success: true, userAccount: action.payload };
+    case DELETE_ACCOUNT_FAIL:
       return { loading: false, success: false, error: action.payload };
     default:
       return state;

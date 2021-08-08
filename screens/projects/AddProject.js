@@ -5,11 +5,6 @@ const AddProject = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>AddProject</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("EditProject")}>
-        <View>
-          <Text>Edit Project</Text>
-        </View>
-      </TouchableOpacity>
     </View>
   );
 };

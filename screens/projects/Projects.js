@@ -6,7 +6,9 @@ const Projects = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Project List</Text>
-      <Project />
+      <TouchableOpacity onPress={() => navigation.navigate("ProjectDetails")}>
+        <Project />
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("AddProject")}>
         <View>
           <Text>Add Project</Text>

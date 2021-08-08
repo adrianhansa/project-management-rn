@@ -1,10 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const Register = () => {
+const Register = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
+      <View>
+        <Text>Already have an account ?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <View>
+            <Text>Login</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

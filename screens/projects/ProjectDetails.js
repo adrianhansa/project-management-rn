@@ -1,10 +1,17 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import Tasks from "../tasks/Tasks";
 
-const ProjectDetails = () => {
+const ProjectDetails = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ProjectDetails</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("EditProject")}>
+        <View>
+          <Text>Edit Project</Text>
+        </View>
+      </TouchableOpacity>
+      <Tasks />
     </View>
   );
 };

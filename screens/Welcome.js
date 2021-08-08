@@ -12,7 +12,7 @@ const Welcome = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: { flex: 1 },
   title: { textAlign: "center", fontSize: 24 },
 });
 

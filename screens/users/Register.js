@@ -18,15 +18,8 @@ const Register = ({ navigation }) => {
   });
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
-      <View>
-        <Text>Already have an account ?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <View>
-            <Text>Login</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <Text style={styles.title}>Create an Account</Text>
+
       <Formik
         initialValues={{
           email: "",
@@ -97,19 +90,51 @@ const Register = ({ navigation }) => {
           </View>
         )}
       </Formik>
+      <View>
+        <Text>Already have an account ?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <View>
+            <Text>Login</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 15 },
+  container: {
+    flex: 1,
+    padding: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+  },
   title: { textAlign: "center", fontSize: 24, marginVertical: 14 },
   inputTextWrapper: {},
-  inputText: {},
-  error: {},
+  inputText: {
+    width: 300,
+    backgroundColor: "#b6bfc4",
+    borderRadius: 25,
+    padding: 16,
+    fontSize: 16,
+    marginVertical: 2,
+  },
+  error: { color: "red" },
   formWrapper: {},
-  buttonWrapper: {},
-  button: {},
+  buttonWrapper: {
+    width: 300,
+    backgroundColor: "#738289",
+    marginVertical: 10,
+    paddingVertical: 10,
+    borderRadius: 25,
+  },
+  button: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#ffffff",
+    textAlign: "center",
+  },
 });
 
 export default Register;

@@ -23,9 +23,6 @@ const schemaValidation = yup.object({
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.userLoggedIn);
-  useEffect(() => {
-    console.log(auth);
-  }, [dispatch, auth]);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -42,8 +39,6 @@ const Login = ({ navigation }) => {
               );
               if (auth.success) {
                 await AsyncStorage.setItem("token", auth.user.token);
-                const token = await AsyncStorage.getItem("token");
-                console.log("Token from storage:", token);
                 navigation.navigate("Home");
               } else if (auth.error) {
                 console.log(auth.error);

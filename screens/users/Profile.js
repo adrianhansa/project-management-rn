@@ -3,19 +3,21 @@ import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../redux/actions/userActions";
 
-const UserProfile = ({ navigation }) => {
+const UserProfile = () => {
   const dispatch = useDispatch();
-  const profileLoaded = useSelector((state) => {
-    state.profile;
-  });
-  // const { loading, error, user } = profileLoaded;
+  const profileLoaded = useSelector((state) => state.profile);
+  const { success, profile } = profileLoaded;
+  console.log(profileLoaded);
   useEffect(() => {
     dispatch(getProfile());
-    console.log("Profile", profileLoaded);
-  }, []);
+  }, [dispatch]);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome, Adi!</Text>
+      {success ? (
+        <Text style={styles.title}>Welcome, {profile.name}!</Text>
+      ) : (
+        <Text>Loading...</Text>
+      )}
     </View>
   );
 };

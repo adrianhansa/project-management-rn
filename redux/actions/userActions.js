@@ -66,10 +66,7 @@ export const getProfile = () => async (dispatch) => {
       "https://project-management-2.herokuapp.com/api/user/profile",
       { headers: { token } }
     );
-
-    if (data.success) {
-      dispatch({ type: GET_PROFILE_SUCCESS, payload: data });
-    }
+    dispatch({ type: GET_PROFILE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_PROFILE_FAIL,

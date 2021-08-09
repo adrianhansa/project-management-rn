@@ -1,4 +1,5 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   DELETE_ACCOUNT_FAIL,
   DELETE_ACCOUNT_REQUEST,
@@ -60,9 +61,12 @@ export const register = (credentials) => async (dispatch) => {
 export const getProfile = () => async (dispatch) => {
   try {
     dispatch({ type: GET_PROFILE_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.get(
-      "https://project-management-2.herokuapp.com/api/user/profile"
+      "https://project-management-2.herokuapp.com/api/user/profile",
+      { headers: { token } }
     );
+
     if (data.success) {
       dispatch({ type: GET_PROFILE_SUCCESS, payload: data });
     }

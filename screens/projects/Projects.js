@@ -7,23 +7,24 @@ import {
   FlatList,
 } from "react-native";
 import Project from "./Project";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getProjects } from "../../redux/actions/projectActions";
 
 const Projects = ({ navigation }) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.userLoggedIn);
   const { loading, projects, error } = useSelector(
     (state) => state.getProjects
   );
-  const projectList = useSelector((state) => state.getProjects);
   useEffect(() => {
     if (!user) {
       navigation.navigate("Login");
     }
   }, [user]);
   useEffect(() => {
-    console.log(projectList);
-  }, [projectList]);
+    dispatch(getProjects());
+    console.log(projects);
+  }, [dispatch]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Project List</Text>

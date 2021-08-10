@@ -11,16 +11,14 @@ export const getProjects = () => async (dispatch) => {
     dispatch({ type: GET_PROJECTS_REQUEST });
     const token = await AsyncStorage.getItem("token");
     const { data } = await axios.get(
-      "https://project-management-2.herokuapp.com/api/user/profile",
-      { headers: token }
+      "https://project-management-2.herokuapp.com/api/projects",
+      { headers: { token } }
     );
-    dispatch({ type: GET_PROJECTS_SUCCESS, payload: data });
+    dispatch({ type: GET_PROJECTS_SUCCESS, payload: data.projects });
   } catch (error) {
     dispatch({
       type: GET_PROJECTS_FAIL,
-      payload: error.response.data.message
-        ? error.response.data.message
-        : error.message,
+      payload: error.message,
     });
   }
 };

@@ -9,6 +9,8 @@ import {
   updateProfileReducer,
 } from "./reducers/userReducers";
 
+import { getProjectsReducer } from "./reducers/projectReducers";
+
 const middleare = composeWithDevTools(applyMiddleware(thunk));
 const rootReducer = combineReducers({
   userLoggedIn: loginReducer,
@@ -16,6 +18,7 @@ const rootReducer = combineReducers({
   profile: getProfileReducer,
   profileUpdated: updateProfileReducer,
   deletedAccount: deleteAccountReducer,
+  getProjects: getProjectsReducer,
 });
 
 const store = createStore(rootReducer, middleare);

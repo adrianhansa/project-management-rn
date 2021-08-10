@@ -9,7 +9,13 @@ import {
   updateProfileReducer,
 } from "./reducers/userReducers";
 
-import { getProjectsReducer } from "./reducers/projectReducers";
+import {
+  getProjectsReducer,
+  getProjectReducer,
+  createProjectReducer,
+  updateProjectReducer,
+  deleteProjectReducer,
+} from "./reducers/projectReducers";
 
 const middleare = composeWithDevTools(applyMiddleware(thunk));
 const rootReducer = combineReducers({
@@ -19,6 +25,10 @@ const rootReducer = combineReducers({
   profileUpdated: updateProfileReducer,
   deletedAccount: deleteAccountReducer,
   getProjects: getProjectsReducer,
+  getProject: getProjectReducer,
+  createdProject: createProjectReducer,
+  updatedProject: updateProjectReducer,
+  deletedProject: deleteProjectReducer,
 });
 
 const store = createStore(rootReducer, middleare);

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Project from "./Project";
+import { useSelector } from "react-redux";
+// import {} from '../../redux/actions/projectActions'
 
 const Projects = ({ navigation }) => {
+  const { user } = useSelector((state) => state.userLoggedIn);
+  useEffect(() => {
+    if (!user) {
+      navigation.navigate("Login");
+    } else {
+    }
+  }, [user]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Project List</Text>

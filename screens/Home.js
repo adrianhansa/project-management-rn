@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { useSelector } from "react-redux";
 
 const Home = ({ navigation }) => {
+  const auth = useSelector((state) => state.userLoggedIn);
+  useEffect(() => {
+    if (auth.success) {
+      console.log(auth.user);
+    }
+  }, [auth]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>

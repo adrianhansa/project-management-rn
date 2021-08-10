@@ -86,7 +86,7 @@ const AppBottomTabs = () => {
         component={WelcomeStack}
         options={{ title: "Welcome Screen" }}
       />
-      <BottomTabs.Screen name="Projects" component={AppStack} />
+      <BottomTabs.Screen name="MyProjects" component={AppStack} />
     </BottomTabs.Navigator>
   );
 };

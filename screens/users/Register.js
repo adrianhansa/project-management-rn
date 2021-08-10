@@ -8,8 +8,13 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/actions/userActions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Register = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const userRegistered = useSelector((state) => state.userRegistered);
   const validationSchema = yup.object({
     email: yup.string().required().email(),
     name: yup.string().required().min(2).max(55),
@@ -28,7 +33,13 @@ const Register = ({ navigation }) => {
           name: "",
         }}
         validationSchema={validationSchema}
-        onSubmit={(values) => console.log("Registered", values)}
+        onSubmit={async (values) => {
+          dispatch(register(values));
+          if (userRegistered.success) {
+            await AsyncStorage.setItem("token", userRegistered.user.token);
+            navigation.navigate("Profile");
+          }
+        }}
       >
         {(props) => (
           <View style={styles.formWrapper}>

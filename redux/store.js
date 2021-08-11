@@ -17,6 +17,8 @@ import {
   deleteProjectReducer,
 } from "./reducers/projectReducers";
 
+import { createTaskReducer, getTasksReducer } from "./reducers/taskReducers";
+
 const middleare = composeWithDevTools(applyMiddleware(thunk));
 const rootReducer = combineReducers({
   userLoggedIn: loginReducer,
@@ -29,6 +31,8 @@ const rootReducer = combineReducers({
   createdProject: createProjectReducer,
   updatedProject: updateProjectReducer,
   deletedProject: deleteProjectReducer,
+  tasks: getTasksReducer,
+  createdTask: createTaskReducer,
 });
 
 const store = createStore(rootReducer, middleare);

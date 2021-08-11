@@ -96,16 +96,20 @@ export const updateProject = (project) => async (dispatch) => {
   }
 };
 
-export const deleteProject = () => async (dispatch) => {
+export const deleteProject = (projectSlug) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PROJECT_REQUEST });
     const token = await AsyncStorage.getItem("token");
-    const { data } = await axios.put(
+    await axios.delete(
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
-      project,
       { headers: { token } }
     );
-    dispatch({ type: DELETE_PROJECT_SUCCESS, payload: data.message });
+    dispatch({ type: DELETE_PROJECT_SUCCESS });
+    const { data } = await axios.get(
+      "https://project-management-2.herokuapp.com/api/projects",
+      { headers: { token } }
+    );
+    dispatch({ type: GET_PROJECTS_SUCCESS, payload: data.projects });
   } catch (error) {
     dispatch({
       type: DELETE_PROJECT_FAIL,

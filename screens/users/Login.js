@@ -40,8 +40,6 @@ const Login = ({ navigation }) => {
               if (auth.success) {
                 await AsyncStorage.setItem("token", auth.user.token);
                 navigation.navigate("Home");
-              } else if (auth.error) {
-                console.log(auth.error);
               }
             }}
             validationSchema={schemaValidation}

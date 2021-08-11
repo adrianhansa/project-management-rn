@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import Project from "./Project";
 import { useSelector, useDispatch } from "react-redux";
-import { getProjects } from "../../redux/actions/projectActions";
+import { getProjects, deleteProject } from "../../redux/actions/projectActions";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const Projects = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -23,7 +24,6 @@ const Projects = ({ navigation }) => {
   }, [user]);
   useEffect(() => {
     dispatch(getProjects());
-    console.log(projects);
   }, [dispatch]);
   return (
     <View style={styles.container}>
@@ -34,16 +34,24 @@ const Projects = ({ navigation }) => {
         <FlatList
           data={projects}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("ProjectDetails", {
-                  id: item._id,
-                  slug: item.slug,
-                })
-              }
-            >
-              <Project item={item} />
-            </TouchableOpacity>
+            <View style={styles.projectWrapper}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("ProjectDetails", {
+                    id: item._id,
+                    slug: item.slug,
+                  })
+                }
+              >
+                <Project item={item} />
+              </TouchableOpacity>
+              <MaterialIcons
+                name="delete-outline"
+                size={24}
+                color="red"
+                onPress={() => dispatch(deleteProject(item.slug))}
+              />
+            </View>
           )}
           keyExtractor={(item) => item._id}
         />
@@ -62,6 +70,19 @@ const Projects = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {},
+  projectWrapper: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "stretch",
+    borderColor: "grey",
+    borderWidth: 1,
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    borderRadius: 10,
+    backgroundColor: "white",
+  },
   title: { textAlign: "center", fontSize: 24 },
 });
 

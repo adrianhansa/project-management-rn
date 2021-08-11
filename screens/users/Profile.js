@@ -7,7 +7,6 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const profileLoaded = useSelector((state) => state.profile);
   const { success, profile } = profileLoaded;
-  console.log(profileLoaded);
   useEffect(() => {
     dispatch(getProfile());
   }, [dispatch]);

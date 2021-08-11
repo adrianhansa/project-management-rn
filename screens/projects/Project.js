@@ -9,17 +9,6 @@ const Project = ({ item }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {},
-  item: {
-    borderColor: "grey",
-    borderWidth: 1,
-    padding: 20,
-    marginVertical: 5,
-    marginHorizontal: 10,
-    borderRadius: 10,
-    backgroundColor: "white",
-  },
-});
+const styles = StyleSheet.create({});
 
 export default Project;

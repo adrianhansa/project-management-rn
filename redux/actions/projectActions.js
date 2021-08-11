@@ -18,11 +18,10 @@ import {
   DELETE_PROJECT_FAIL,
 } from "../constants/projectConstants";
 
-const token = await AsyncStorage.getItem("token");
-
 export const getProjects = () => async (dispatch) => {
   try {
     dispatch({ type: GET_PROJECTS_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.get(
       "https://project-management-2.herokuapp.com/api/projects",
       { headers: { token } }
@@ -41,6 +40,7 @@ export const getProjects = () => async (dispatch) => {
 export const getProject = (projectSlug) => async (dispatch) => {
   try {
     dispatch({ type: GET_PROJECT_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.get(
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
       { headers: { token } }
@@ -59,6 +59,7 @@ export const getProject = (projectSlug) => async (dispatch) => {
 export const createProject = (project) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PROJECT_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.post(
       `https://project-management-2.herokuapp.com/api/projects/`,
       project,
@@ -78,6 +79,7 @@ export const createProject = (project) => async (dispatch) => {
 export const updateProject = (project) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROJECT_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.put(
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
       project,
@@ -97,6 +99,7 @@ export const updateProject = (project) => async (dispatch) => {
 export const deleteProject = () => async (dispatch) => {
   try {
     dispatch({ type: DELETE_PROJECT_REQUEST });
+    const token = await AsyncStorage.getItem("token");
     const { data } = await axios.put(
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
       project,

@@ -33,15 +33,21 @@ const Projects = ({ navigation }) => {
       ) : projects ? (
         <FlatList
           data={projects}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("ProjectDetails", { id: item._id })
+              }
+            >
+              <Project item={item} />
+            </TouchableOpacity>
+          )}
           keyExtractor={(item) => item._id}
         />
       ) : (
         <Text>{error}</Text>
       )}
-      <TouchableOpacity onPress={() => navigation.navigate("ProjectDetails")}>
-        <Project />
-      </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate("AddProject")}>
         <View>
           <Text>Add Project</Text>

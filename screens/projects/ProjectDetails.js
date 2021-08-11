@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Tasks from "../tasks/Tasks";
 
 const ProjectDetails = ({ navigation }) => {
+  useEffect(() => {
+    console.log(navigation);
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>ProjectDetails</Text>

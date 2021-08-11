@@ -17,7 +17,11 @@ const ProjectDetails = ({ navigation, route }) => {
       ) : project ? (
         <>
           <Text style={styles.title}>{project.name}</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("EditProject")}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("EditProject", { slug: project.slug })
+            }
+          >
             <View>
               <Text>Edit Project</Text>
             </View>

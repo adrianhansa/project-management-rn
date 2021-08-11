@@ -66,6 +66,11 @@ export const createProject = (project) => async (dispatch) => {
       { headers: { token } }
     );
     dispatch({ type: CREATE_PROJECT_SUCCESS, payload: result.data.project });
+    const { data } = await axios.get(
+      "https://project-management-2.herokuapp.com/api/projects",
+      { headers: { token } }
+    );
+    dispatch({ type: GET_PROJECTS_SUCCESS, payload: data.projects });
   } catch (error) {
     dispatch({
       type: CREATE_PROJECT_FAIL,
@@ -76,16 +81,21 @@ export const createProject = (project) => async (dispatch) => {
   }
 };
 
-export const updateProject = (project) => async (dispatch) => {
+export const updateProject = (project, projectSlug) => async (dispatch) => {
   try {
     dispatch({ type: UPDATE_PROJECT_REQUEST });
     const token = await AsyncStorage.getItem("token");
-    const { data } = await axios.put(
+    const result = await axios.put(
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
       project,
       { headers: { token } }
     );
-    dispatch({ type: UPDATE_PROJECT_SUCCESS, payload: data.project });
+    dispatch({ type: UPDATE_PROJECT_SUCCESS, payload: result.data.project });
+    const { data } = await axios.get(
+      "https://project-management-2.herokuapp.com/api/projects",
+      { headers: { token } }
+    );
+    dispatch({ type: GET_PROJECTS_SUCCESS, payload: data.projects });
   } catch (error) {
     dispatch({
       type: UPDATE_PROJECT_FAIL,

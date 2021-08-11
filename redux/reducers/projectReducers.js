@@ -34,7 +34,7 @@ export const getProjectReducer = (state = {}, action) => {
     case GET_PROJECT_REQUEST:
       return { loading: true };
     case GET_PROJECT_SUCCESS:
-      return { loading: false, projects: action.payload };
+      return { loading: false, project: action.payload };
     case GET_PROJECT_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -47,7 +47,7 @@ export const createProjectReducer = (state = {}, action) => {
     case CREATE_PROJECT_REQUEST:
       return { loading: true };
     case CREATE_PROJECT_SUCCESS:
-      return { loading: false, projects: action.payload };
+      return { loading: false, project: action.payload };
     case CREATE_PROJECT_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -60,7 +60,7 @@ export const updateProjectReducer = (state = {}, action) => {
     case UPDATE_PROJECT_REQUEST:
       return { loading: true };
     case UPDATE_PROJECT_SUCCESS:
-      return { loading: false, projects: action.payload };
+      return { loading: false, project: action.payload };
     case UPDATE_PROJECT_FAIL:
       return { loading: false, error: action.payload };
     default:
@@ -73,7 +73,7 @@ export const deleteProjectReducer = (state = {}, action) => {
     case DELETE_PROJECT_REQUEST:
       return { loading: true };
     case DELETE_PROJECT_SUCCESS:
-      return { loading: false, projects: action.payload };
+      return { loading: false, project: action.payload };
     case DELETE_PROJECT_FAIL:
       return { loading: false, error: action.payload };
     default:

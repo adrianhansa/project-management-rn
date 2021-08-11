@@ -1,20 +1,32 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Tasks from "../tasks/Tasks";
+import { useDispatch, useSelector } from "react-redux";
+import { getProject } from "../../redux/actions/projectActions";
 
-const ProjectDetails = ({ navigation }) => {
+const ProjectDetails = ({ navigation, route }) => {
+  const dispatch = useDispatch();
+  const { loading, error, project } = useSelector((state) => state.getProject);
   useEffect(() => {
-    console.log(navigation);
-  }, []);
+    dispatch(getProject(route.params.slug));
+  }, [dispatch]);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ProjectDetails</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("EditProject")}>
-        <View>
-          <Text>Edit Project</Text>
-        </View>
-      </TouchableOpacity>
-      <Tasks />
+      {loading ? (
+        <Text>Loading...</Text>
+      ) : project ? (
+        <>
+          <Text style={styles.title}>{project.name}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("EditProject")}>
+            <View>
+              <Text>Edit Project</Text>
+            </View>
+          </TouchableOpacity>
+          <Tasks />
+        </>
+      ) : (
+        <Text>{error}</Text>
+      )}
     </View>
   );
 };

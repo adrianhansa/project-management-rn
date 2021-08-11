@@ -36,7 +36,10 @@ const Projects = ({ navigation }) => {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("ProjectDetails", { id: item._id })
+                navigation.navigate("ProjectDetails", {
+                  id: item._id,
+                  slug: item.slug,
+                })
               }
             >
               <Project item={item} />

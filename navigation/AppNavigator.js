@@ -40,7 +40,6 @@ const AppStack = () => {
         name="ProjectDetails"
         component={ProjectDetails}
         options={{ title: "ProjectDetails" }}
-        initialParams={{ id }}
       />
     </Stack.Navigator>
   );

@@ -60,12 +60,12 @@ export const createProject = (project) => async (dispatch) => {
   try {
     dispatch({ type: CREATE_PROJECT_REQUEST });
     const token = await AsyncStorage.getItem("token");
-    const { data } = await axios.post(
+    const result = await axios.post(
       `https://project-management-2.herokuapp.com/api/projects/`,
       project,
       { headers: { token } }
     );
-    dispatch({ type: CREATE_PROJECT_SUCCESS, payload: data.project });
+    dispatch({ type: CREATE_PROJECT_SUCCESS, payload: result.data.project });
   } catch (error) {
     dispatch({
       type: CREATE_PROJECT_FAIL,

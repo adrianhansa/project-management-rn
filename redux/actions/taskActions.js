@@ -19,7 +19,8 @@ export const getTasks = (projectSlug) => async (dispatch) => {
       `https://project-management-2.herokuapp.com/api/${projectSlug}/tasks`,
       { headers: { token } }
     );
-    dispatch({ type: GET_TASKS_SUCCESS, payload: data.tasks });
+    console.log(data);
+    dispatch({ type: GET_TASKS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_TASKS_FAIL,
@@ -39,7 +40,7 @@ export const createTask = (task, projectSlug) => async (dispatch) => {
       task,
       { headers: { token } }
     );
-    dispatch({ type: CREATE_TASK_SUCCESS, payload: result.data.task });
+    dispatch({ type: CREATE_TASK_SUCCESS, payload: result.data });
     const { data } = await axios.get(
       `https://project-management-2.herokuapp.com/api/${projectSlug}/tasks`,
       { headers: { token } }

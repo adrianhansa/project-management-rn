@@ -13,7 +13,7 @@ export const getTasksReducer = (state = [], action) => {
     case GET_TASKS_REQUEST:
       return { loading: true };
     case GET_TASKS_SUCCESS:
-      return { loading: false, projects: action.payload };
+      return { loading: false, tasks: action.payload };
     case GET_TASKS_FAIL:
       return { loading: false, error: action.payload };
     default:

@@ -26,7 +26,7 @@ const ProjectDetails = ({ navigation, route }) => {
               <Text>Edit Project</Text>
             </View>
           </TouchableOpacity>
-          <Tasks />
+          <Tasks navigation={navigation} slug={project.slug} />
         </>
       ) : (
         <Text>{error}</Text>

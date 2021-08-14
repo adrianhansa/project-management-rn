@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../redux/actions/taskActions";
+import { getProject } from "../../redux/actions/projectActions";
 
 const AddTask = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,8 @@ const AddTask = ({ navigation }) => {
         schemaValidation={schemaValidation}
         onSubmit={(values) => {
           dispatch(createTask(values, project.project.slug));
-          navigation.navigate("ProjectDetails");
+          dispatch(getProject(project.project.slug));
+          navigation.navigate("ProjectDetails", { slug: project.project.slug });
         }}
       >
         {(props) => {

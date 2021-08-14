@@ -6,14 +6,35 @@ import { getProject } from "../../redux/actions/projectActions";
 
 const ProjectDetails = ({ navigation, route }) => {
   const dispatch = useDispatch();
-  const projectDetails = useSelector((state) => {
-    return state.getProject;
-  });
+  const { loading, project } = useSelector((state) => state.getProject);
   useEffect(() => {
-    console.log(projectDetails);
     dispatch(getProject(route.params.slug));
   }, [dispatch]);
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      {loading ? (
+        <Text>Loading</Text>
+      ) : (
+        <>
+          <Text style={styles.title}>{project.project.name}</Text>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("EditProject", { slug: project.project.slug })
+            }
+          >
+            <View>
+              <Text>Edit Project</Text>
+            </View>
+          </TouchableOpacity>
+          <Tasks
+            navigation={navigation}
+            slug={project.project.slug}
+            tasks={project.tasks}
+          />
+        </>
+      )}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

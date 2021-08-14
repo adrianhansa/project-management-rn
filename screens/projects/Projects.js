@@ -37,10 +37,7 @@ const Projects = ({ navigation }) => {
             <View style={styles.projectWrapper}>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate("ProjectDetails", {
-                    id: item._id,
-                    slug: item.slug,
-                  })
+                  navigation.navigate("ProjectDetails", { slug: item.slug })
                 }
               >
                 <Project item={item} />

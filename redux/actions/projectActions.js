@@ -45,7 +45,7 @@ export const getProject = (projectSlug) => async (dispatch) => {
       `https://project-management-2.herokuapp.com/api/projects/${projectSlug}`,
       { headers: { token } }
     );
-    dispatch({ type: GET_PROJECT_SUCCESS, payload: data.project });
+    dispatch({ type: GET_PROJECT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_PROJECT_FAIL,

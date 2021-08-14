@@ -34,6 +34,7 @@ const Login = ({ navigation }) => {
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={async (values) => {
+              console.log(auth);
               dispatch(
                 login({ email: values.email, password: values.password })
               );

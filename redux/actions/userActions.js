@@ -25,9 +25,7 @@ export const login = (credentials) => async (dispatch) => {
       "https://project-management-2.herokuapp.com/api/user/login",
       credentials
     );
-    if (data.success) {
-      dispatch({ type: LOGIN_SUCCESS, payload: data });
-    }
+    dispatch({ type: LOGIN_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
@@ -45,9 +43,7 @@ export const register = (credentials) => async (dispatch) => {
       "https://project-management-2.herokuapp.com/api/user/register",
       credentials
     );
-    if (data.success) {
-      dispatch({ type: REGISTER_SUCCESS, payload: data });
-    }
+    dispatch({ type: REGISTER_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: REGISTER_FAIL,

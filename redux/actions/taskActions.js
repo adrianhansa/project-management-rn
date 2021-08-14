@@ -4,11 +4,18 @@ import {
   CREATE_TASK_FAIL,
   CREATE_TASK_REQUEST,
   CREATE_TASK_SUCCESS,
+  DELETE_TASK_FAIL,
+  DELETE_TASK_REQUEST,
+  DELETE_TASK_SUCCESS,
   GET_TASKS_FAIL,
   GET_TASKS_REQUEST,
   GET_TASKS_SUCCESS,
+  GET_TASK_FAIL,
   GET_TASK_REQUEST,
   GET_TASK_SUCCESS,
+  UPDATE_TASK_FAIL,
+  UPDATE_TASK_REQUEST,
+  UPDATE_TASK_SUCCESS,
 } from "../constants/taskConstants";
 
 export const getTasks = (projectSlug) => async (dispatch) => {
@@ -19,7 +26,6 @@ export const getTasks = (projectSlug) => async (dispatch) => {
       `https://project-management-2.herokuapp.com/api/${projectSlug}/tasks`,
       { headers: { token } }
     );
-    console.log(data);
     dispatch({ type: GET_TASKS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
@@ -41,11 +47,6 @@ export const createTask = (task, projectSlug) => async (dispatch) => {
       { headers: { token } }
     );
     dispatch({ type: CREATE_TASK_SUCCESS, payload: result.data });
-    const { data } = await axios.get(
-      `https://project-management-2.herokuapp.com/api/${projectSlug}/tasks`,
-      { headers: { token } }
-    );
-    dispatch({ type: GET_TASKS_SUCCESS, payload: data.tasks });
   } catch (error) {
     dispatch({
       type: CREATE_TASK_FAIL,

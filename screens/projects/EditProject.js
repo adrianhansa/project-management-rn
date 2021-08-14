@@ -14,6 +14,7 @@ const EditProject = ({ navigation, route }) => {
   const { loading, error, project } = useSelector((state) => state.getProject);
   useEffect(() => {
     dispatch(getProject(route.params.slug));
+    console.log(route.params.slug);
   }, [dispatch]);
   return (
     <View style={styles.container}>
@@ -21,7 +22,7 @@ const EditProject = ({ navigation, route }) => {
         <Text>Loading...</Text>
       ) : project ? (
         <Formik
-          initialValues={{ name: project.name }}
+          initialValues={{ name: project.project.name }}
           validationSchema={schemaValidation}
           onSubmit={(values) => {
             dispatch(updateProject(values, route.params.slug));

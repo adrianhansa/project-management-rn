@@ -14,7 +14,7 @@ const ProjectDetails = ({ navigation, route }) => {
     <View style={styles.container}>
       {loading ? (
         <Text>Loading</Text>
-      ) : (
+      ) : project ? (
         <>
           <Text style={styles.title}>{project.project.name}</Text>
           <TouchableOpacity
@@ -32,6 +32,8 @@ const ProjectDetails = ({ navigation, route }) => {
             tasks={project.tasks}
           />
         </>
+      ) : (
+        <Text>Error</Text>
       )}
     </View>
   );

@@ -14,7 +14,9 @@ const Tasks = ({ navigation, slug, tasks }) => {
       <Text style={styles.title}>Tasks</Text>
       <FlatList
         data={tasks}
-        renderItem={({ item }) => <Task task={item} />}
+        renderItem={({ item }) => (
+          <Task task={item} slug={slug} navigation={navigation} />
+        )}
         keyExtractor={(item) => item._id}
       />
       <TouchableOpacity

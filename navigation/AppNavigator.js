@@ -51,6 +51,11 @@ const AppStack = () => {
         component={AddTask}
         options={{ title: "Add Task" }}
       />
+      <Stack.Screen
+        name="TaskDetails"
+        component={TaskDetails}
+        options={{ title: "Task Details" }}
+      />
     </Stack.Navigator>
   );
 };
